@@ -1,0 +1,40 @@
+.sidebar{
+    &__active{
+        background: #FFFFFF;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+        border-radius: 4px;
+    }
+    &__list{
+        margin-left: 10px;
+        margin-bottom: 30px;
+        li{
+            margin: 2px;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            i{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 20px;height: 20px;
+            }
+            span{
+                margin-left: 10px;
+            }
+        }
+       
+    }
+    &__icon{
+        width: 10px!important;
+        height: 10px!important;
+        position: relative;
+        top: 1.5px;
+        border-radius: 50%;
+        &--aqua{
+            background-color:#64C4ED;
+        }
+        &--green{
+            background-color: #42B883;
+        }
+    }
+}
