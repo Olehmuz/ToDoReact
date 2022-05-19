@@ -4,8 +4,9 @@
   list-style-type: none;
   font-size: 18px;
 }
-body, html{
-
+body, html, #root{
+  width: 100%;
+  height: 100%;  
 }
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
