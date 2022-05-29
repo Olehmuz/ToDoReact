@@ -1,7 +1,7 @@
 import "./App.scss";
-import AddList from "./list/AddList";
+import AddList from "./AddList/AddList";
 import List from "./list/List";
-
+import DB from "./../assets/db.json";
 function App() {
   return (
     <div className="App">
@@ -26,6 +26,7 @@ function App() {
               name: "All tasks",
               active: true,
             },
+            
           ]}
           isRemovable={true}
         />
@@ -33,7 +34,7 @@ function App() {
         <List
           items={[
             {
-              color: "aqua",
+              color: "blue",
               name: "Front-End",
               active: true,
             },
@@ -45,7 +46,7 @@ function App() {
           ]}
           isRemovable={true}
         />
-        <AddList />
+        <AddList colors={DB.colors}/>
       </div>
       <div className="main">main</div>
     </div>

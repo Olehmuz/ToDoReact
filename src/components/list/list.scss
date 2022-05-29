@@ -1,11 +1,17 @@
 .sidebar{
+    flex:1 0 auto;
+    background: #F4F6F8;
+    height: 100%;
+    padding: 60px 40px;
+    box-sizing: border-box;
+    max-width: 300px;
     &__active{
         background: #FFFFFF;
         box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
         border-radius: 4px;
     }
     &__list{
-        margin-left: 10px;
+        cursor: pointer;
         margin-bottom: 30px;
         &--plus{
             color:#767676;
@@ -15,7 +21,7 @@
             padding: 10px 12px;
             display: flex;
             align-items: center;
-            i{
+            .icon__wrap{
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -26,18 +32,5 @@
             }
         }
        
-    }
-    &__icon{
-        width: 10px!important;
-        height: 10px!important;
-        position: relative;
-        top: 1.5px;
-        border-radius: 50%;
-        &--aqua{
-            background-color:#64C4ED;
-        }
-        &--green{
-            background-color: #42B883;
-        }
     }
 }
