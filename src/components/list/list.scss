@@ -15,12 +15,25 @@
         margin-bottom: 30px;
         &--plus{
             color:#767676;
+            transition: 0.2s ease all;
+            opacity: 0.7;
+            &:hover{
+                opacity: 1;
+                background: none!important;
+                box-shadow: none!important;
+            }
         }
         li{
             margin: 2px;
             padding: 10px 12px;
             display: flex;
             align-items: center;
+            transition: 0.2s ease all;
+            &:hover{
+                background: #FFFFFF;
+                box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+                border-radius: 4px;
+            }
             .icon__wrap{
                 display: flex;
                 align-items: center;

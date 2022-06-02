@@ -1,8 +1,18 @@
 import "./App.scss";
+import React, {useState} from 'react';
 import AddList from "./AddList/AddList";
 import List from "./list/List";
 import DB from "./../assets/db.json";
 function App() {
+  const [lists, setNewLists] = useState(DB.lists.map((el) =>{
+    el.color = DB.colors.find(color => color.id === el.colorId).name;
+    return el;
+  }));
+  console.log(lists)
+  const onAddList = (newObj) => {
+    const newList = [...lists, newObj];
+    setNewLists(newList);
+  }
   return (
     <div className="App">
       <div className="sidebar">
@@ -28,25 +38,14 @@ function App() {
             },
             
           ]}
-          isRemovable={true}
+          isRemovable={false}
         />
 
         <List
-          items={[
-            {
-              color: "blue",
-              name: "Front-End",
-              active: true,
-            },
-            {
-              color: "green",
-              name: "Back-End",
-              active: false,
-            },
-          ]}
+          items={lists}
           isRemovable={true}
         />
-        <AddList colors={DB.colors}/>
+        <AddList onAdd={onAddList} colors={DB.colors}/>
       </div>
       <div className="main">main</div>
     </div>

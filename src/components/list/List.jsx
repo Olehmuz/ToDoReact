@@ -2,7 +2,7 @@ import "./list.scss";
 import classNames from "classnames";
 import Badge from "../Badge/Badge";
 const List = ({items, isRemovable, onClick}) => {
-
+    
     return (
         <ul onClick={onClick} className="sidebar__list">
             {items.map((el, ind) =>{

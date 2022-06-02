@@ -2,11 +2,22 @@ import "./addList.scss";
 import List from "../list/List";
 import React, {useState} from "react";
 import Badge from "../Badge/Badge";
-const AddList = ({colors}) => {
+const AddList = ({onAdd, colors}) => {
   const [state, setState] = useState(0);
   const [selectedColor, selectColor] = useState(colors[0].id);
-  
+  const [inputValue, updInpValue] = useState("");
+
   const togglePopUp = () => {setState(state === 0 ? 1 : 0);selectColor(colors[0].id);}
+
+  const onAddList = () => {
+    const newListItem = {
+      "id": Math.random(),
+      "name": inputValue,
+      "colorId": selectedColor,
+      "color": colors.find(color => color.id === selectedColor).name
+    }
+    onAdd(newListItem);
+  }
   return (
     <React.Fragment>
       <List
@@ -61,15 +72,17 @@ const AddList = ({colors}) => {
               />
             </svg>
             <input
+              onChange={e => updInpValue(e.target.value)}
               className="field addList__field"
               type="text"
               placeholder="List name"
+              value={inputValue}
             />
             <div className="addList__colors">
               {colors.map(el => <Badge key={el.id} color={el.name} onclick={() => selectColor(el.id)} active={selectedColor === el.id && "active"}/>)}
             
             </div>
-            <button className="btn addList__btn">Add</button>
+            <button onClick={onAddList} className="btn addList__btn">Add</button>
           </div>
         </div>
       ) : null}
