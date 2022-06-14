@@ -2,7 +2,7 @@ import "./addList.scss";
 import List from "../list/List";
 import React, {useState} from "react";
 import Badge from "../Badge/Badge";
-const AddList = ({onAdd, colors}) => {
+const AddList = ({onAdd, colors, isRemovable}) => {
   const [state, setState] = useState(0);
   const [selectedColor, selectColor] = useState(colors[0].id);
   const [inputValue, updInpValue] = useState("");
@@ -53,7 +53,7 @@ const AddList = ({onAdd, colors}) => {
             active: false,
           },
         ]}
-        isRemovable={true}
+        isRemovable={isRemovable}
       />
       {state === 1 ? (
         <div className="addList__wrap">

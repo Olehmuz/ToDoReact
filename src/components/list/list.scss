@@ -2,7 +2,7 @@
     flex:1 0 auto;
     background: #F4F6F8;
     height: 100%;
-    padding: 60px 40px;
+    padding: 60px 25px;
     box-sizing: border-box;
     max-width: 300px;
     &__active{
@@ -33,6 +33,12 @@
                 background: #FFFFFF;
                 box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
                 border-radius: 4px;
+                img{
+                    opacity: 0.2;
+                    &:hover{
+                        opacity: 0.8;
+                    }
+                }
             }
             .icon__wrap{
                 display: flex;
@@ -42,6 +48,12 @@
             }
             span{
                 margin-left: 10px;
+                flex:1;
+            }
+            img{
+                opacity: 0;
+                transition: 0.2s ease all;
+                padding-left: 5px;
             }
         }
        

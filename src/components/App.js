@@ -3,12 +3,13 @@ import React, {useState} from 'react';
 import AddList from "./AddList/AddList";
 import List from "./list/List";
 import DB from "./../assets/db.json";
+import Tasks from "./Tasks/Tasks";
 function App() {
   const [lists, setNewLists] = useState(DB.lists.map((el) =>{
     el.color = DB.colors.find(color => color.id === el.colorId).name;
     return el;
   }));
-  console.log(lists)
+
   const onAddList = (newObj) => {
     const newList = [...lists, newObj];
     setNewLists(newList);
@@ -38,7 +39,7 @@ function App() {
             },
             
           ]}
-          isRemovable={false}
+          
         />
 
         <List
@@ -47,7 +48,7 @@ function App() {
         />
         <AddList onAdd={onAddList} colors={DB.colors}/>
       </div>
-      <div className="main">main</div>
+      <Tasks />
     </div>
   );
 }
