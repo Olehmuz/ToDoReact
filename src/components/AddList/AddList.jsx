@@ -1,22 +1,25 @@
 import "./addList.scss";
-import List from "../list/List";
-import React, {useState} from "react";
+import List from "../List/List";
+import React, {useEffect, useState} from "react";
 import Badge from "../Badge/Badge";
+import axios from "axios";
+
 const AddList = ({onAdd, colors, isRemovable}) => {
   const [state, setState] = useState(0);
-  const [selectedColor, selectColor] = useState(colors[0].id);
+  const [selectedColor, selectColor] = useState(0);
   const [inputValue, updInpValue] = useState("");
+  useEffect(() => {
+    if(colors){
+      selectColor(colors[0].id)
+    }
 
+  },[colors]);
   const togglePopUp = () => {setState(state === 0 ? 1 : 0);selectColor(colors[0].id);}
 
   const onAddList = () => {
-    const newListItem = {
-      "id": Math.random(),
-      "name": inputValue,
-      "colorId": selectedColor,
-      "color": colors.find(color => color.id === selectedColor).name
-    }
-    onAdd(newListItem);
+    axios.post("http://localhost:3001/lists", {"name": inputValue, "colorId": selectedColor}).then(({data}) => {
+      onAdd({...data, color: {name: colors.find((el) => el.id === selectedColor).name}});
+    }) 
   }
   return (
     <React.Fragment>

@@ -1,16 +1,36 @@
 import "./App.scss";
-import React, {useState} from 'react';
-import AddList from "./AddList/AddList";
-import List from "./list/List";
-import DB from "./../assets/db.json";
-import Tasks from "./Tasks/Tasks";
-function App() {
-  const [lists, setNewLists] = useState(DB.lists.map((el) =>{
-    el.color = DB.colors.find(color => color.id === el.colorId).name;
-    return el;
-  }));
+import React, {useEffect, useState} from 'react';
+import axios from "axios";
 
+import AddList from "./AddList/AddList";
+import List from "./List/List";
+import Tasks from "./Tasks/Tasks";
+
+
+
+
+function App() {
+  
+  const [colors, setNewColors] = useState(null);
+  const [lists, setNewLists] = useState(null);
+
+  useEffect(() =>{
+    axios.get("http://localhost:3001/lists?_expand=color&_embed=tasks").then(({data}) => {
+      setNewLists(data)
+    })
+    axios.get("http://localhost:3001/colors").then(({data}) => {
+      setNewColors(data)
+    })
+  },[])
+
+
+  const onRemoveList = (deletedObjId) => {
+    
+    const newList = lists.filter((el) => el.id !== deletedObjId);
+    setNewLists(newList) 
+  }
   const onAddList = (newObj) => {
+    
     const newList = [...lists, newObj];
     setNewLists(newList);
   }
@@ -42,13 +62,14 @@ function App() {
           
         />
 
-        <List
+        {lists ? (<List
           items={lists}
+          removeItem={onRemoveList}
           isRemovable={true}
-        />
-        <AddList onAdd={onAddList} colors={DB.colors}/>
+        />) : (`Загрузка...`)}
+        <AddList onAdd={onAddList} colors={colors}/>
       </div>
-      <Tasks />
+      {lists ? (<Tasks list={lists[1]}/>) : null}
     </div>
   );
 }
