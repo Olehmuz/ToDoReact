@@ -7,7 +7,7 @@
     },
     {
       "id": 2,
-      "name": "Фронтенд3221",
+      "name": "Фронтенд",
       "colorId": 4
     },
     {
@@ -49,11 +49,6 @@
       "name": "вфівфі",
       "colorId": 4,
       "id": 10
-    },
-    {
-      "name": "іфвіф",
-      "colorId": 4,
-      "id": 11
     }
   ],
   "tasks": [
@@ -140,6 +135,30 @@
       "text": "Сделали удаление и редактирование задач и списков",
       "completed": true,
       "id": 17
+    },
+    {
+      "listId": 4,
+      "text": "dsada",
+      "completed": false,
+      "id": 18
+    },
+    {
+      "listId": 4,
+      "text": "222",
+      "completed": false,
+      "id": 19
+    },
+    {
+      "listId": 4,
+      "text": "222",
+      "completed": false,
+      "id": 20
+    },
+    {
+      "listId": 4,
+      "text": "222",
+      "completed": false,
+      "id": 21
     }
   ],
   "colors": [

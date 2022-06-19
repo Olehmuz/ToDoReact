@@ -14,7 +14,7 @@ const List = ({items, isRemovable, onClick, removeItem, onActiveList, activeList
                     <li key={el+ind} onClick={onActiveList ? () => onActiveList(el) : null} className={classNames(el.className, {sidebar__active:activeList && el.id === activeList.id})}>
                         <i className="icon__wrap">{el.icon ? el.icon : <Badge color={el.color.name} />}</i>
                        
-                        <span>{el.name}{el.tasks ? ` (${el.tasks.length})` : null}</span>
+                        <span>{el.name}{el.tasks ? `(${el.tasks.length})` : onActiveList ? "(0)" : null}</span>
                         {isRemovable && (
                             <img src={ExitSvg} alt="Close" onClick={(e) =>{
                                 if(window.confirm("Do you want delete this task?")){

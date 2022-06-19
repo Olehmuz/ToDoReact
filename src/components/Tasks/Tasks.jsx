@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./tasks.scss"
 import editSvg from './../../assets/img/edit.svg';
 import axios from 'axios';
-export default function Tasks({list, onTitleListEdit}) {
+import AddTask from './addTask/AddTask';
+export default function Tasks({list, onTitleListEdit, onAddTask}) {
+
+  
+
   const OnTitleEdit = () => { 
     const newTitle = window.prompt("Insert new title", list.name);
     if(newTitle && newTitle !== list.name.toString()){
@@ -10,9 +14,11 @@ export default function Tasks({list, onTitleListEdit}) {
       onTitleListEdit(list.id, newTitle);
     }
   }
+
   return list && (
     <div className="tasks">
         <h2 className="tasks__title">{list.name} <img onClick={() => OnTitleEdit(list.id, list.name)} src={editSvg} alt="Edit title" /></h2>
+        {console.log(!list.tasks)}
         {!list.tasks.length && (<h2 className='tasks__empty'>Задачі відсутні</h2>)}
         {list && list.tasks.map((task) =>{
             return (
@@ -27,6 +33,7 @@ export default function Tasks({list, onTitleListEdit}) {
               </div>
             )} 
         )}
+        <AddTask onAddTask={onAddTask} list={list}/>
         
     
        

@@ -1,0 +1,49 @@
+.tasks{
+    &__addForm{
+        display: flex;
+        align-items: center;
+        color: #767676;
+        transition: 0.2s ease all;
+        opacity: 0.7;
+        margin-top: 20px;
+        cursor: pointer;
+        &:hover{
+            opacity: 1;
+            
+        }
+        &--span{
+            margin-left: 15px;
+        }
+    }
+    .form{
+        input{
+            margin: 15px 0;
+         
+            display: block; 
+            padding: 10px 15px;
+            width: 415px;
+            background: #FFFFFF;
+            border: 1px solid #EFEFEF;
+            border-radius: 4px;
+            &::-webkit-input-placeholder {
+                color: #C7C7C7;
+            }
+        }
+        .btn{
+            padding: 10px 40px;
+            &--cancel{
+                background: #F4F6F8;
+                border-radius: 4px;
+                padding: 10px 24px;
+                border:none;
+                color: #9C9C9C;
+                transition: 0.2s ease all;
+                cursor: pointer;
+                margin-left: 10px;
+                &:hover{
+                    background: #e2e2e2;
+                }
+            }
+        }
+    }
+}

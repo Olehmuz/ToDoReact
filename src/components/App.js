@@ -53,6 +53,17 @@ function App() {
     const newList = [...lists, newObj];
     setNewLists(newList);
   }
+
+  const onAddTask = (listId, taskObj) => {
+    const newList = lists.map((item) => {
+      if(item.id === listId){
+        return item.tasks = [...item.tasks, taskObj];
+      }
+      return item;
+    });
+    setNewLists(newList);
+  }
+
   return (
     <div className="App">
       <div className="sidebar">
@@ -91,7 +102,7 @@ function App() {
         />) : (`Загрузка...`)}
         <AddList onAdd={onAddList} colors={colors}/>
       </div>
-      {lists ? (<Tasks onTitleListEdit={onTitleListEdit} list={activeList}/>) : null}
+      {lists ? (<Tasks onAddTask={onAddTask} onTitleListEdit={onTitleListEdit} list={activeList}/>) : null}
     </div>
   );
 }
