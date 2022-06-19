@@ -1,6 +1,16 @@
 .tasks{
     flex:1 1 auto;
-   
+    &__empty{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        font-family: 'Montserrat';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 32px;
+       
+        color: #C9D1D3;
+    }
     &__title{
         display: flex;
         align-items: center;

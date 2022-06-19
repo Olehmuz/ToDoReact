@@ -13,6 +13,7 @@ function App() {
   
   const [colors, setNewColors] = useState(null);
   const [lists, setNewLists] = useState(null);
+  const [activeList, setActiveList] = useState(null);
 
   useEffect(() =>{
     axios.get("http://localhost:3001/lists?_expand=color&_embed=tasks").then(({data}) => {
@@ -23,11 +24,29 @@ function App() {
     })
   },[])
 
+  const onActiveList = (item) => {
+    setActiveList(item);
+  }
+
+  const onTitleListEdit = (id, newTitle) => { 
+    const newLists = lists.map(el => {
+      if(el.id === id){
+        el.name = newTitle;
+      }
+      return el;
+    })
+    setNewLists(newLists);
+  }
 
   const onRemoveList = (deletedObjId) => {
     
     const newList = lists.filter((el) => el.id !== deletedObjId);
-    setNewLists(newList) 
+    setNewLists(newList);
+    console.log(newList.id, activeList.id)
+    if(deletedObjId === activeList.id){
+      setActiveList(null);
+    }
+    
   }
   const onAddList = (newObj) => {
     
@@ -37,7 +56,7 @@ function App() {
   return (
     <div className="App">
       <div className="sidebar">
-        <List
+      {lists ? <List
           items={[
             {
               icon: (
@@ -60,16 +79,19 @@ function App() {
             
           ]}
           
-        />
+        /> : null
+        }
 
         {lists ? (<List
           items={lists}
           removeItem={onRemoveList}
+          onActiveList={onActiveList}
+          activeList={activeList}
           isRemovable={true}
         />) : (`Загрузка...`)}
         <AddList onAdd={onAddList} colors={colors}/>
       </div>
-      {lists ? (<Tasks list={lists[1]}/>) : null}
+      {lists ? (<Tasks onTitleListEdit={onTitleListEdit} list={activeList}/>) : null}
     </div>
   );
 }
