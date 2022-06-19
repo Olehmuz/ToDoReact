@@ -27,6 +27,9 @@ body {
   &:hover{
     background: darken(#4DD599, 10%);
   }
+  &:disabled{
+    background: #d8d8d8;
+  }
 }
 .field{
     box-sizing: border-box;

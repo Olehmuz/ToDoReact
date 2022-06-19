@@ -1,22 +1,35 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { useEffect } from 'react';
 import "./addTask.scss";
 export default function AddTask({onAddTask, list}) {
     const [inputValue, setInputValue] = useState("");
     const [isVisible, setVisibiity] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const toggleFormVisibility = () => {
         isVisible === false ? setVisibiity(true) : setVisibiity(false);
         setInputValue("");
     }
+    useEffect(() => {
+        setVisibiity(false);
+    }, [list])
     const addTask = () => {
         const newTask = {
             "listId": list.id,
             "text": inputValue,
             "completed": false
         }
+        setIsLoading(true);
         axios.post("http://localhost:3001/tasks", newTask).then(({data}) => {
-            addTask(data);
+            onAddTask(list.id, data);
+            toggleFormVisibility();
         })
+        .catch(e => {
+            alert('Error!');
+        })
+        .finally(() => {
+            setIsLoading(false);
+        });
     }
 
     return (
@@ -49,7 +62,7 @@ export default function AddTask({onAddTask, list}) {
             {isVisible && 
                 <div className='form'>
                     <input type="text" onChange={(e) => setInputValue(e.target.value)} value={inputValue} placeholder='Task text'/>
-                    <button className='btn' onClick={addTask}>Add task</button><button onClick={toggleFormVisibility} className='btn--cancel'>Сancel</button>
+                    <button className='btn' disabled={isLoading} onClick={addTask}>{isLoading ? "Adding task..." : "Add task"}</button><button disabled={isLoading} onClick={toggleFormVisibility} className='btn--cancel'>Сancel</button>
                 </div>}
         </React.Fragment>
     )

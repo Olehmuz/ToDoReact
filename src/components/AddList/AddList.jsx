@@ -8,18 +8,27 @@ const AddList = ({onAdd, colors, isRemovable}) => {
   const [state, setState] = useState(0);
   const [selectedColor, selectColor] = useState(0);
   const [inputValue, updInpValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     if(colors){
       selectColor(colors[0].id)
     }
 
   },[colors]);
-  const togglePopUp = () => {setState(state === 0 ? 1 : 0);selectColor(colors[0].id);}
+  const togglePopUp = () => {setState(state === 0 ? 1 : 0);selectColor(colors[0].id);updInpValue("")}
 
   const onAddList = () => {
+    setIsLoading(true);
     axios.post("http://localhost:3001/lists", {"name": inputValue, "colorId": selectedColor}).then(({data}) => {
       onAdd({...data, color: {name: colors.find((el) => el.id === selectedColor).name}});
-    }) 
+      togglePopUp()
+    }).catch(e => {
+      alert('Error!');
+    })
+    .finally(() => {
+        setIsLoading(false);
+    }); 
+    
   }
   return (
     <React.Fragment>
@@ -85,7 +94,7 @@ const AddList = ({onAdd, colors, isRemovable}) => {
               {colors.map(el => <Badge key={el.id} color={el.name} onclick={() => selectColor(el.id)} active={selectedColor === el.id && "active"}/>)}
             
             </div>
-            <button onClick={onAddList} className="btn addList__btn">Add</button>
+            <button disabled={isLoading} onClick={onAddList} className="btn addList__btn">{isLoading ? "Adding" : "Add"}</button>
           </div>
         </div>
       ) : null}

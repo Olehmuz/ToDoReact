@@ -57,7 +57,7 @@ function App() {
   const onAddTask = (listId, taskObj) => {
     const newList = lists.map((item) => {
       if(item.id === listId){
-        return item.tasks = [...item.tasks, taskObj];
+        item.tasks = [...item.tasks, taskObj];
       }
       return item;
     });
