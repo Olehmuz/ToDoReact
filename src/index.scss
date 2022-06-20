@@ -14,7 +14,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.App{
+  display: flex;
+}
 .btn{
   box-sizing: border-boxq; 
   padding: 10px 65px;

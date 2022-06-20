@@ -3,7 +3,7 @@ import "./tasks.scss"
 import editSvg from './../../assets/img/edit.svg';
 import axios from 'axios';
 import AddTask from './addTask/AddTask';
-export default function Tasks({list, onTitleListEdit, onAddTask}) {
+export default function Tasks({list, onTitleListEdit, onAddTask, withoutEmpty}) {
 
   
 
@@ -17,8 +17,8 @@ export default function Tasks({list, onTitleListEdit, onAddTask}) {
 
   return list && (
     <div className="tasks">
-        <h2 className="tasks__title">{list.name} <img onClick={() => OnTitleEdit(list.id, list.name)} src={editSvg} alt="Edit title" /></h2>
-        {!list.tasks.length && (<h2 className='tasks__empty'>Задачі відсутні</h2>)}
+        <h2 style={{color: list.color.hex}} className="tasks__title">{list.name} <img onClick={() => OnTitleEdit(list.id, list.name)} src={editSvg} alt="Edit title" /></h2>
+        {!withoutEmpty && !list.tasks.length && (<h2 className='tasks__empty'>Задачі відсутні</h2>)}
         {list && list.tasks.map((task) =>{
             return (
               <div className="checkbox" key={task.id}>

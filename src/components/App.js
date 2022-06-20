@@ -1,6 +1,6 @@
-import "./App.scss";
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
 import AddList from "./AddList/AddList";
 import List from "./List/List";
@@ -14,7 +14,8 @@ function App() {
   const [colors, setNewColors] = useState(null);
   const [lists, setNewLists] = useState(null);
   const [activeList, setActiveList] = useState(null);
-
+  let navigate = useNavigate(); 
+  let location = useLocation();
   useEffect(() =>{
     axios.get("http://localhost:3001/lists?_expand=color&_embed=tasks").then(({data}) => {
       setNewLists(data)
@@ -24,7 +25,16 @@ function App() {
     })
   },[])
 
+  useEffect(() => {
+    const listId = location.pathname.split('lists/')[1];
+    if (lists) {
+      const list = lists.find(list => list.id === Number(listId));
+      setActiveList(list);
+    }
+  }, [lists, location.pathname]);
+
   const onActiveList = (item) => {
+    navigate(`/lists/${item.id}`);
     setActiveList(item);
   }
 
@@ -42,14 +52,13 @@ function App() {
     
     const newList = lists.filter((el) => el.id !== deletedObjId);
     setNewLists(newList);
-    console.log(newList.id, activeList.id)
+   // console.log(newList.id, activeList.id)
     if(deletedObjId === activeList.id){
       setActiveList(null);
     }
     
   }
   const onAddList = (newObj) => {
-    
     const newList = [...lists, newObj];
     setNewLists(newList);
   }
@@ -68,8 +77,13 @@ function App() {
     <div className="App">
       <div className="sidebar">
       {lists ? <List
+          withoutLength
+          onActiveList={list => {
+            navigate("/");
+          }}
           items={[
             {
+              
               icon: (
                 <svg
                   width="14"
@@ -100,9 +114,15 @@ function App() {
           activeList={activeList}
           isRemovable={true}
         />) : (`Загрузка...`)}
-        <AddList onAdd={onAddList} colors={colors}/>
+        <AddList withoutLength onAdd={onAddList} colors={colors}/>
       </div>
-      {lists ? (<Tasks onAddTask={onAddTask} onTitleListEdit={onTitleListEdit} list={activeList}/>) : null}
+      <div className="tasks__wrapper">
+        <Routes>
+            <Route exact path="/" element={lists && lists.map((list) => <Tasks key={list.id} onAddTask={onAddTask} withoutEmpty onTitleListEdit={onTitleListEdit} list={list}/>)} />
+            <Route exact path="/lists/:id" element={<Tasks onAddTask={onAddTask} onTitleListEdit={onTitleListEdit} list={activeList}/>} />
+        </Routes>
+      </div>
+     
     </div>
   );
 }

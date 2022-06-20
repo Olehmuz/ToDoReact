@@ -4,7 +4,7 @@ import React, {useEffect, useState} from "react";
 import Badge from "../Badge/Badge";
 import axios from "axios";
 
-const AddList = ({onAdd, colors, isRemovable}) => {
+const AddList = ({onAdd, colors, isRemovable, withoutLength}) => {
   const [state, setState] = useState(0);
   const [selectedColor, selectColor] = useState(0);
   const [inputValue, updInpValue] = useState("");
@@ -20,7 +20,7 @@ const AddList = ({onAdd, colors, isRemovable}) => {
   const onAddList = () => {
     setIsLoading(true);
     axios.post("http://localhost:3001/lists", {"name": inputValue, "colorId": selectedColor}).then(({data}) => {
-      onAdd({...data, color: {name: colors.find((el) => el.id === selectedColor).name}});
+      onAdd({...data, color: {name: colors.find((el) => el.id === selectedColor).name}, tasks: []});
       togglePopUp()
     }).catch(e => {
       alert('Error!');
@@ -33,6 +33,7 @@ const AddList = ({onAdd, colors, isRemovable}) => {
   return (
     <React.Fragment>
       <List
+        withoutLength
         onClick={togglePopUp}
         items={[
           {
