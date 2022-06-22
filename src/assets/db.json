@@ -32,7 +32,7 @@
     },
     {
       "id": 7,
-      "name": "Курс по ReactJS ToDo",
+      "name": "ReactJS ToDo",
       "colorId": 7
     }
   ],
@@ -40,13 +40,13 @@
     {
       "id": 1,
       "listId": 2,
-      "text": "Изучить JavaScript",
+      "text": "Вивчити JavaScript",
       "completed": true
     },
     {
       "id": 2,
       "listId": 2,
-      "text": "Изучить паттерны проектирования",
+      "text": "Вивчити патерни проектування",
       "completed": false
     },
     {
@@ -62,238 +62,76 @@
       "completed": false
     },
     {
-      "listId": 2,
-      "text": "123",
-      "completed": true,
-      "id": 5
-    },
-    {
-      "listId": 1,
-      "text": "test",
-      "completed": false,
-      "id": 6
-    },
-    {
-      "listId": 1,
-      "text": "qweqwe",
-      "completed": false,
-      "id": 7
-    },
-    {
-      "listId": 1,
-      "text": "qweqwe",
-      "completed": true,
-      "id": 8
-    },
-    {
-      "listId": 1,
-      "text": "123",
-      "completed": false,
-      "id": 9
-    },
-    {
       "listId": 4,
-      "text": "Купить 1984!",
+      "text": "Як стати міліонером?",
       "completed": true,
       "id": 10
     },
     {
-      "listId": 2,
-      "text": "222",
-      "completed": true,
-      "id": 12
-    },
-    {
       "listId": 7,
-      "text": "Сделали сайдбар",
+      "text": "Зробити сайдбар",
       "completed": true,
       "id": 15
     },
     {
       "listId": 7,
-      "text": "Сделали список задач",
+      "text": "Зробити список завдань",
       "completed": true,
       "id": 16
     },
     {
       "listId": 7,
-      "text": "Сделали удаление и редактирование задач и списков",
+      "text": "Зробити видалення та редагування завдань та списків",
       "completed": true,
       "id": 17
     },
     {
-      "listId": 4,
-      "text": "dsada",
+      "listId": 6,
+      "text": "Футбол",
       "completed": false,
-      "id": 18
-    },
-    {
-      "listId": 4,
-      "text": "222",
-      "completed": false,
-      "id": 19
-    },
-    {
-      "listId": 4,
-      "text": "222",
-      "completed": false,
-      "id": 20
-    },
-    {
-      "listId": 4,
-      "text": "222",
-      "completed": false,
-      "id": 21
-    },
-    {
-      "listId": 4,
-      "text": "1",
-      "completed": false,
-      "id": 22
-    },
-    {
-      "listId": 4,
-      "text": "31231",
-      "completed": false,
-      "id": 23
-    },
-    {
-      "listId": 4,
-      "text": "31231",
-      "completed": false,
-      "id": 24
-    },
-    {
-      "listId": 4,
-      "text": "32112",
-      "completed": false,
-      "id": 25
-    },
-    {
-      "listId": 4,
-      "text": "32112",
-      "completed": false,
-      "id": 26
-    },
-    {
-      "listId": 5,
-      "text": "23",
-      "completed": false,
-      "id": 27
-    },
-    {
-      "listId": 4,
-      "text": "1321",
-      "completed": false,
-      "id": 28
-    },
-    {
-      "listId": 2,
-      "text": "13131",
-      "completed": false,
-      "id": 29
-    },
-    {
-      "listId": 2,
-      "text": "13131",
-      "completed": false,
-      "id": 30
-    },
-    {
-      "listId": 2,
-      "text": "1321",
-      "completed": false,
-      "id": 31
-    },
-    {
-      "listId": 2,
-      "text": "13312121",
-      "completed": false,
-      "id": 32
+      "id": 50
     },
     {
       "listId": 6,
-      "text": "2e1",
+      "text": "Баскетбол",
       "completed": false,
-      "id": 33
+      "id": 51
     },
     {
       "listId": 6,
-      "text": "231231",
+      "text": "Бейсбол",
       "completed": false,
-      "id": 34
-    },
-    {
-      "listId": 6,
-      "text": "13213",
-      "completed": false,
-      "id": 35
-    },
-    {
-      "listId": 6,
-      "text": "21321",
-      "completed": false,
-      "id": 36
-    },
-    {
-      "listId": 6,
-      "text": "23132321321",
-      "completed": false,
-      "id": 37
-    },
-    {
-      "listId": 6,
-      "text": "21321312",
-      "completed": false,
-      "id": 38
-    },
-    {
-      "listId": 6,
-      "text": "dsasda",
-      "completed": false,
-      "id": 39
-    },
-    {
-      "listId": 6,
-      "text": "sqwdqqwd",
-      "completed": false,
-      "id": 40
-    },
-    {
-      "listId": 6,
-      "text": "dsaadsdsa",
-      "completed": false,
-      "id": 41
-    },
-    {
-      "listId": 3,
-      "text": "dsadad",
-      "completed": false,
-      "id": 42
-    },
-    {
-      "listId": 2,
-      "text": "312311",
-      "completed": false,
-      "id": 43
-    },
-    {
-      "listId": 2,
-      "text": "4342324",
-      "completed": false,
-      "id": 44
+      "id": 52
     },
     {
       "listId": 1,
-      "text": "3112",
+      "text": "Футболки ( 10 шт )",
       "completed": false,
-      "id": 46
+      "id": 53
     },
     {
-      "listId": 2,
-      "text": "1111",
+      "listId": 1,
+      "text": "Спортивні костюми ( 5 шт )",
+      "completed": true,
+      "id": 54
+    },
+    {
+      "listId": 1,
+      "text": "Джинси ( 3 шт )",
       "completed": false,
-      "id": 47
+      "id": 55
+    },
+    {
+      "listId": 3,
+      "text": "Месники",
+      "completed": true,
+      "id": 56
+    },
+    {
+      "listId": 5,
+      "text": "Зустрітись з друзями ",
+      "completed": false,
+      "id": 57
     }
   ],
   "colors": [

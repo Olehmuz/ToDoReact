@@ -35,7 +35,24 @@ function App() {
 
   const onActiveList = (item) => {
     navigate(`/lists/${item.id}`);
-    setActiveList(item);
+  }
+
+  const onCompletedToggle = (listId, taskId, completed) => {
+    const newList = lists.map((item) => {
+      if(item.id === listId){
+          item.tasks.map((el) => {
+            if(el.id === taskId){
+              el.completed = completed;
+            }
+          return el;
+        })
+      }
+      return item;
+    });
+    axios.patch(`http://localhost:3001/tasks/${taskId}`, {completed: completed}).catch(() => {
+          alert("Error")
+    });
+    setNewLists(newList);
   }
 
   const onTitleListEdit = (id, newTitle) => { 
@@ -49,14 +66,42 @@ function App() {
   }
 
   const onRemoveList = (deletedObjId) => {
-    
     const newList = lists.filter((el) => el.id !== deletedObjId);
     setNewLists(newList);
-   // console.log(newList.id, activeList.id)
     if(deletedObjId === activeList.id){
       setActiveList(null);
     }
-    
+  }
+  const onRemoveTask = (listId, taskId) => {
+    const newList = lists.map((item) => {
+      if(item.id === listId){
+        item.tasks = item.tasks.filter((el) => el.id !== taskId);
+      }
+      return item;
+    });
+    setNewLists(newList);
+    axios.delete("http://localhost:3001/tasks/" + taskId).catch(() => {
+      alert("Error");
+    });
+  }
+
+  const onEditTask = (listId, {id, text}) => {
+    const newText = window.prompt("Insert value", text);
+    if(newText){
+      const newList = lists.map((item) => {
+        if(item.id === listId){
+            item.tasks.map((el) => {
+              if(el.id === id){
+                el.text = newText;
+              }
+            return el;
+          })
+          axios.patch(`http://localhost:3001/tasks/${id}`, {text: newText});
+        }
+        return item;
+      });
+      setNewLists(newList);
+    }
   }
   const onAddList = (newObj) => {
     const newList = [...lists, newObj];
@@ -99,7 +144,7 @@ function App() {
                 </svg>
               ),
               name: "All tasks",
-              active: true,
+              active: location.pathname === "/",
             },
             
           ]}
@@ -118,8 +163,8 @@ function App() {
       </div>
       <div className="tasks__wrapper">
         <Routes>
-            <Route exact path="/" element={lists && lists.map((list) => <Tasks key={list.id} onAddTask={onAddTask} withoutEmpty onTitleListEdit={onTitleListEdit} list={list}/>)} />
-            <Route exact path="/lists/:id" element={<Tasks onAddTask={onAddTask} onTitleListEdit={onTitleListEdit} list={activeList}/>} />
+            <Route path="/" element={lists && lists.map((list) => <Tasks key={list.id} onCompletedToggle={onCompletedToggle} onAddTask={onAddTask} onRemoveTask={onRemoveTask} onEditTask={onEditTask} withoutEmpty onTitleListEdit={onTitleListEdit} list={list}/>)} />
+            <Route exact path="/lists/:id" element={<Tasks onCompletedToggle={onCompletedToggle} onAddTask={onAddTask} onRemoveTask={onRemoveTask} onEditTask={onEditTask} onTitleListEdit={onTitleListEdit} list={activeList}/>} />
         </Routes>
       </div>
      

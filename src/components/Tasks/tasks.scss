@@ -1,6 +1,7 @@
 .tasks{
     flex:1 1 auto;
     margin: 65px;
+    $self : &;
     &__wrapper{
         display: flex;
         flex-direction: column;
@@ -16,6 +17,9 @@
         font-size: 32px;
        
         color: #C9D1D3;
+    }
+    a{
+        text-decoration: none;
     }
     &__title{
         display: flex;
@@ -38,10 +42,18 @@
         border-bottom: 1px solid #F2F2F2;
         padding-bottom: 20px;
     }
+    &__actions{
+        margin-right: 20px;
+        opacity: 0;
+        transition: opacity 0.15s ease-in-out;
+    }
     .checkbox{
         display: flex;
         align-items: center;
         margin-top:20px;
+        &:hover #{$self}__actions {
+            opacity: 1;
+        }
         label{
             display: flex;
             align-items: center;
@@ -76,15 +88,43 @@
                 }
             }
         }
-        input{
-            width: 100%;
-            border: 0;
-            margin-left: 15px;
-            font-style: normal;
-            font-weight: 500;
-            font-size: 16px;
-            line-height: 19px;
-            color: #000000;
-        }
+       
+        
     }
+    &__content{
+        width: 100%;
+        border: 0;
+        margin-left: 15px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        color: #000000;
+        flex: 1;
+    }
+    
+
+    &__edit, &__delete{
+        display:  inline-flex;
+        align-items: center;
+        justify-content: center; 
+        width: 32px;
+        height: 32px;
+        background-color: lighten(#f4f6f8, 2%);
+        border-radius: 6px;
+        margin-left: 5px;
+        cursor: pointer;
+        transition: 0.2s ease all;
+        svg{
+            opacity: 0.4;
+            transition: 0.2s ease all;
+        }
+        &:hover {
+            background-color: darken(#f4f6f8, 2%);
+            svg {
+              opacity: 0.9;
+            }
+          }
+    }
+
 }

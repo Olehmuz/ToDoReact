@@ -20,7 +20,8 @@ const AddList = ({onAdd, colors, isRemovable, withoutLength}) => {
   const onAddList = () => {
     setIsLoading(true);
     axios.post("http://localhost:3001/lists", {"name": inputValue, "colorId": selectedColor}).then(({data}) => {
-      onAdd({...data, color: {name: colors.find((el) => el.id === selectedColor).name}, tasks: []});
+      const color = colors.find((el) => el.id === selectedColor);
+      onAdd({...data, color: {name:color.name, hex: color.hex}, tasks: []});
       togglePopUp()
     }).catch(e => {
       alert('Error!');
